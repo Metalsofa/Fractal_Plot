@@ -7,7 +7,7 @@ C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(174):
 C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(175): warning C4018: '<': signed/unsigned mismatch
 C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(197): warning C4244: 'argument': conversion from 'long double' to 'GLfloat', possible loss of data
 C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(210): warning C4244: 'argument': conversion from 'long double' to 'GLfloat', possible loss of data
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(394): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(403): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\utility(161): warning C4267: 'initializing': conversion from 'size_t' to '_Ty2', possible loss of data
           with
           [

@@ -379,6 +379,15 @@ void processNormalKeys(unsigned char key, int x, int y) {
 		break;
 	case 'o':
 		speed /= 2.0;
+		break;
+	case 'z':
+		pointSize -= 1.0;
+		if (pointSize < 1.0)
+			pointSize = 1.0;
+		break;
+	case 'x':
+		pointSize += 1.0;
+		break;
 	}
 	renderScene();
 	return;
