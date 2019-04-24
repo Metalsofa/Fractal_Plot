@@ -13,7 +13,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           [
               _Ty2=int
           ]
-  C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\complex.h(145): note: see reference to function template instantiation 'std::pair<bool,int>::pair<bool,unsigned __int64,0>(std::pair<bool,unsigned __int64> &&) noexcept' being compiled
-  C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\complex.h(145): note: see reference to function template instantiation 'std::pair<bool,int>::pair<bool,unsigned __int64,0>(std::pair<bool,unsigned __int64> &&) noexcept' being compiled
+  C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\complex.h(146): note: see reference to function template instantiation 'std::pair<bool,int>::pair<bool,unsigned __int64,0>(std::pair<bool,unsigned __int64> &&) noexcept' being compiled
+  C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\complex.h(146): note: see reference to function template instantiation 'std::pair<bool,int>::pair<bool,unsigned __int64,0>(std::pair<bool,unsigned __int64> &&) noexcept' being compiled
 C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(101): warning C4715: 'getColorScheme': not all control paths return a value
   Fractal Graph.vcxproj -> C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\x64\Debug\Fractal Graph.exe

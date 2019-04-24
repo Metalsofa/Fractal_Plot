@@ -123,8 +123,8 @@ std::pair<bool, int> is_lace(clong_double(*func)(clong_double), clong_double arg
 //Evaluate a complex fractal plot value for a given complex number
 std::pair<bool, int> mandelbrot(clong_double arg, clong_double c, long double threshold, int depth) {
 	std::size_t i = 0;
-	while ( ( (arg.magnitude() < threshold && fractal_type != 2) || (fractal_type == 2 && c.magnitude() < threshold)) && i < depth) {
-		switch (fractal_type % 3) {
+	while ( ( (arg.magnitude() < threshold && fractal_type % 4 < 2) || (fractal_type % 4 >= 2 && c.magnitude() < threshold)) && i < depth) {
+		switch (fractal_type % 4) {
 		case 0: //Mandelbrot
 			arg = arg * arg + c;
 			break;
@@ -135,11 +135,12 @@ std::pair<bool, int> mandelbrot(clong_double arg, clong_double c, long double th
 			//Arg represents the chosen 'c' now, and c is the location
 			c = c * c + arg;
 			break;
-
+		case 3:
+			c = c * c * c + arg;
 		}
 		++i;
 	}
-	if (fractal_type == 2) {
+	if (fractal_type % 4 >= 2) {
 		std::swap(arg, c);
 		if (arg.magnitude() > threshold) {
 			return std::make_pair(true, depth - i);

@@ -1,0 +1,21 @@
+REPOSITORY - https://github.com/Metalsofa/Fractal_Plot
+
+====== CONTROLS =====
+q - quit application
+w/s - zoom in/out
+arrow keys - pan view
+l/h - increase/decrease real part of starting point (mainly for Julia fractal, but works with any)
+j/k - increase/decrease imaginary part of starting point (also mainly for Julia fractal)
+t - switch between fractal types (there are four currently implemented)
+m/n - increase/decrease sampling resolution
+SPACE - create high-quality render of what is currently on-screen
+p/o - increase/decrease movement speed (also affects the rate at which h/j/k/l change the starting point
+r/f - increase/decrease maximum iteration depth
+x/z - increase/decrease sampling point size
+c - switch between color schemes
+
+Thanks for downloading my program! You can see my other stuff at
+https://github.com/Metalsofa
+Please let me know if you have any suggestions or questions about the application.
+
+Happy plotting!
