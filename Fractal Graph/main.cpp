@@ -9,6 +9,8 @@ int fractal_type = 0;
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include <unordered_map>
+#include <thread>
 #include "complex.h"
 
 long double VAR = 0.01;
@@ -17,6 +19,8 @@ long double xpan = 0.0;
 long double ypan = 0.0;
 long double zoom = 1.0;
 long double defaultViewportSize = 10.0;
+
+long double moddenom = 100.0;
 
 int maxiterations = 64;
 
@@ -110,6 +114,18 @@ int windowWidth = 10;
 
 bool ctrlDown = false;
 
+//Remember numbers that ARE part of the set
+std::unordered_map<long double, std::vector<long double>> knownmembers;
+
+//The gradients available to this session
+std::vector<gradient> gradientSet = {
+	rainbow, twilight, cyanic, blood, noir
+};
+
+//Contains pre-compiled GPU instructions for changing to the right color given a particular integer
+std::vector<std::vector<GLuint>> compiled_gradients;
+
+
 void ClearScreen() { glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); }/* Main source file for Glimmer */
 
 //Callback for when the window changes size
@@ -139,10 +155,34 @@ long double randomFloat(long double lb, long double rb) {
 	return lb + static_cast <long double> (rand()) / (static_cast <long double> (RAND_MAX / (rb - lb)));
 }
 
+void recompile_gradients() {
+	compiled_gradients.resize(gradientSet.size());
+	for (unsigned int i = 0; i < gradientSet.size(); ++i) {
+		compiled_gradients[i].resize(maxiterations);
+		for (unsigned int j = 0; j < maxiterations; ++j) {
+			glDeleteLists(compiled_gradients[i][j], 1);
+			compiled_gradients[i][j] = glGenLists(1);
+			glNewList(compiled_gradients[i][j], GL_COMPILE);
+				fgr::setcolor(mapgradient(fmodl(long double(j), moddenom) / moddenom, gradientSet[i]));
+			glEndList();
+		}
+	}
+}
+
  /* Initialize OpenGL Graphics */
 void initGL() {
 	// Set "clearing" or background color
 	glClearColor(0.0, 0.0, 0.0, 0.0); // Black and opaque
+	//Set up compiled gradients
+	//compiled_gradients.resize(gradientSet.size());
+	//for (unsigned int i = 0; i < gradientSet.size(); ++i) {
+	//	compiled_gradients[i].resize(maxiterations);
+	//	for (unsigned int j = 0; j < maxiterations; ++j) {
+	//		compiled_gradients[i][j] = glGenLists(1);
+	//	}
+	//}
+	//Initialize the gradients
+	recompile_gradients();
 }
 
 //Test function for complex plotting: the mandelbrot set for a given c
@@ -172,15 +212,44 @@ void renderScene(void) {
 		glPointSize(1.0f);
 		glBegin(GL_POINTS);
 		for (unsigned int i = 0; i < windowHeight; ++i) {
+			dot.imaginary = (long double(i) / long double(windowHeight)) * (ymax - ymin) + ymin; //* (((ypan - defaultViewportSize) / zoom), ((ypan + defaultViewportSize) / zoom));
+			//auto data_exists = knownmembers.find(dot.imaginary);
+			//int prev = -1;
 			for (unsigned int j = 0; j < windowWidth; ++j) {
 				dot.real = (long double(j) / long double(windowWidth)) * (xmax - xmin) + xmin; //* ((xpan - defaultViewportSize * ratio) / zoom, (xpan + defaultViewportSize * ratio) / zoom);
-				dot.imaginary = (long double(i) / long double(windowHeight)) * (ymax - ymin) + ymin; //* (((ypan - defaultViewportSize) / zoom), ((ypan + defaultViewportSize) / zoom));
-				eval = mandelbrot(starting_point, dot, threshold, maxiterations);
+				//if (data_exists != knownmembers.end()) {
+				//	for (unsigned int q = 0; q < data_exists->second.size(); ++q) {
+				//		//On even-numbered cells (0 being odd and 1 being even),
+				//		if (q % 2) {
+				//			if (data_exists->second[q - 1] < dot.real && dot.real < data_exists->second[q]) {
+				//				eval.first = false;
+				//				break;
+				//				//Technically also eval.second = 0
+				//			}
+				//		}
+				//	}
+				//}
+				//else
+					eval = mandelbrot(starting_point, dot, threshold, maxiterations);
 				if (eval.first) {
 					//fgr::setcolor(mapgradient(long double(eval.second) / long double(maxiterations), cyanic));
-					fgr::setcolor(mapgradient(fmodl(long double(eval.second), 100.0l) / 100.0l, getColorScheme(currentscheme)));
+					//fgr::setcolor(mapgradient(fmodl(long double(eval.second), 100.0l) / 100.0l, gradientSet[currentscheme]));
+					glCallList(compiled_gradients[currentscheme][eval.second]);
 					glVertex2i(j, i);
 				}
+				//if (prev != -1) {
+				//	if (eval.second == 0) {
+				//		if (prev != 0) {
+				//			knownmembers[dot.imaginary].push_back(dot.real);
+				//		}
+				//	}
+				//	else {
+				//		if (prev == 0) {
+				//			knownmembers[dot.imaginary].push_back(dot.real);
+				//		}
+				//	}
+				//}
+				//prev = eval.second;
 			}
 			//if (i * 64 % windowHeight == 0) {
 				glEnd();
@@ -206,7 +275,8 @@ void renderScene(void) {
 			eval = mandelbrot(starting_point, dot, threshold, maxiterations);
 			if (eval.first) {
 				//fgr::setcolor(mapgradient(long double(eval.second) / long double(maxiterations), cyanic));
-				fgr::setcolor(mapgradient(fmodl(long double(eval.second), 100.0l) / 100.0l, getColorScheme(currentscheme)));
+				//fgr::setcolor(mapgradient(fmodl(long double(eval.second), 100.0l) / 100.0l, getColorScheme(currentscheme)));
+				glCallList(compiled_gradients[currentscheme][eval.second]);
 				glVertex2f(j, i);
 			}
 			//if (s * 4 % samplingResolution == 0) {
@@ -336,14 +406,17 @@ void processNormalKeys(unsigned char key, int x, int y) {
 		break;
 	case 'c':
 		currentscheme++;
+		currentscheme %= compiled_gradients.size();
 		ClearScreen();
 		break;
 	case 'r':
 		maxiterations *= 2;
+		recompile_gradients();
 		ClearScreen();
 		break;
 	case 'f':
 		maxiterations /= 2;
+		recompile_gradients();
 		ClearScreen();
 		break;
 	case ' ':

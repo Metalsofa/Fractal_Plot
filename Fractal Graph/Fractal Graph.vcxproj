@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="complex.h" />
     <ClInclude Include="gradients.h" />
+    <ClInclude Include="reigons.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,13 +1,14 @@
 ﻿  main.cpp
 C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\fgrutils\fgrmenu.h(125): warning C4267: '=': conversion from 'size_t' to 'fgr::menu::edex', possible loss of data
 C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\gradients.h(21): warning C4244: 'argument': conversion from 'long double' to 'float', possible loss of data
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(73): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(81): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(174): warning C4018: '<': signed/unsigned mismatch
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(175): warning C4018: '<': signed/unsigned mismatch
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(197): warning C4244: 'argument': conversion from 'long double' to 'GLfloat', possible loss of data
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(210): warning C4244: 'argument': conversion from 'long double' to 'GLfloat', possible loss of data
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(403): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(77): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(85): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(162): warning C4018: '<': signed/unsigned mismatch
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(214): warning C4018: '<': signed/unsigned mismatch
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(218): warning C4018: '<': signed/unsigned mismatch
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(266): warning C4244: 'argument': conversion from 'long double' to 'GLfloat', possible loss of data
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(280): warning C4244: 'argument': conversion from 'long double' to 'GLfloat', possible loss of data
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(476): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\utility(161): warning C4267: 'initializing': conversion from 'size_t' to '_Ty2', possible loss of data
           with
           [
@@ -15,5 +16,8 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           ]
   C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\complex.h(146): note: see reference to function template instantiation 'std::pair<bool,int>::pair<bool,unsigned __int64,0>(std::pair<bool,unsigned __int64> &&) noexcept' being compiled
   C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\complex.h(146): note: see reference to function template instantiation 'std::pair<bool,int>::pair<bool,unsigned __int64,0>(std::pair<bool,unsigned __int64> &&) noexcept' being compiled
-C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(101): warning C4715: 'getColorScheme': not all control paths return a value
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\chrono(595): note: see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\chrono(172): note: see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.20.27508\include\chrono(574): note: see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' being compiled
+C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\Fractal Graph\main.cpp(105): warning C4715: 'getColorScheme': not all control paths return a value
   Fractal Graph.vcxproj -> C:\Users\medlod\source\repos\Metalsofa\Fractal_Plot\x64\Debug\Fractal Graph.exe
